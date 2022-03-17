@@ -1,0 +1,3 @@
+/Users/akokko/CLionProjects/WokerManager/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/akokko/CLionProjects/WokerManager/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/akokko/CLionProjects/WokerManager/cmake-build-debug/CMakeFiles/WokerManager.dir

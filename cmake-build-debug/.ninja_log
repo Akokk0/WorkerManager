@@ -1,0 +1,21 @@
+# ninja log v5
+1	278	1647446145139022539	CMakeFiles/WokerManager.dir/WorkerManager.cpp.o	c9cc1fe4d3da835e
+1	252	1647446297894146607	CMakeFiles/WokerManager.dir/Employee.cpp.o	edb86c54006329a
+1	244	1647446297885769229	CMakeFiles/WokerManager.dir/main.cpp.o	c07405bea59a1e9d
+252	282	1647446297926006128	WokerManager	63cd590ba318728a
+1	252	1647446297894147566	CMakeFiles/WokerManager.dir/Manager.cpp.o	5a347bdb36b329d5
+4	434	1647531880205587483	CMakeFiles/WokerManager.dir/Boss.cpp.o	5a347079aa195051
+4	439	1647531880210934437	CMakeFiles/WokerManager.dir/Manager.cpp.o	5a347bdb36b329d5
+1	411	1647532043909128037	CMakeFiles/WokerManager.dir/main.cpp.o	c07405bea59a1e9d
+2	413	1647532043911086823	CMakeFiles/WokerManager.dir/Manager.cpp.o	5a347bdb36b329d5
+2	413	1647532043912889488	CMakeFiles/WokerManager.dir/Boss.cpp.o	5a347079aa195051
+2	416	1647532043915805001	CMakeFiles/WokerManager.dir/Employee.cpp.o	edb86c54006329a
+1	244	1647532071492413109	CMakeFiles/WokerManager.dir/Boss.cpp.o	5a347079aa195051
+1	258	1647532135359376061	CMakeFiles/WokerManager.dir/Boss.cpp.o	5a347079aa195051
+258	291	1647532135394862995	WokerManager	8d72291af1e656eb
+1	281	1647532204028514642	CMakeFiles/WokerManager.dir/main.cpp.o	c07405bea59a1e9d
+281	318	1647532204070698873	WokerManager	8d72291af1e656eb
+1	247	1647532228493796278	CMakeFiles/WokerManager.dir/main.cpp.o	c07405bea59a1e9d
+248	278	1647532228525429930	WokerManager	8d72291af1e656eb
+1	251	1647532249111583473	CMakeFiles/WokerManager.dir/Boss.cpp.o	5a347079aa195051
+251	281	1647532249143397705	WokerManager	8d72291af1e656eb
