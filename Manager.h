@@ -12,7 +12,6 @@ using namespace std;
 
 #define WOKERMANAGER_MANAGER_H
 
-
 class Manager : public  Worker {
 
 public:

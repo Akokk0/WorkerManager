@@ -10,7 +10,7 @@ using namespace std;
 
 int main() {
 
-    //测试代码
+    /*//测试代码
     Worker *worker = NULL;
     worker = new Employee(1, "小李", 32);
     worker->showPersonalInfo();
@@ -22,11 +22,11 @@ int main() {
 
     worker = new Boss(3, "王李", 75);
     worker->showPersonalInfo();
-    delete worker;
+    delete worker;*/
 
-    /*WorkerManager wm;
+    WorkerManager wm;
 
-    wm.startManager();*/
+    wm.startManager();
 
     return 0;
 }
