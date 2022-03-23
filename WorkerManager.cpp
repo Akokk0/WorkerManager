@@ -30,6 +30,27 @@ WorkerManager::WorkerManager() {
 
     }
 
+    //文件数据为空
+    char ch;
+    ifs >> ch;
+    if ( ifs.eof() ) {
+
+        cout << "测试输出，文件为空" << endl;
+
+        //文件不存在变量设置为真
+        m_fileIsNotExit = true;
+
+        //员工数组设置为空
+        m_EmpArray = NULL;
+        //员工数设置为0
+        m_EmpNum = 0;
+
+        //关闭文件，退出下面操作
+        ifs.close();
+        return;
+
+    }
+
 }
 
 void WorkerManager::showMenu() {
@@ -184,6 +205,9 @@ void WorkerManager::addEmp() {
 
         //保存数据到文件
         saveFile();
+
+        //设置文件为非空
+        m_fileIsNotExit = false;
 
         //输出提示添加成功
         cout << addNum << "名员工添加成功" << endl;

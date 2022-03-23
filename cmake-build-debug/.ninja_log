@@ -5,3 +5,7 @@
 2	413	1647532043911086823	CMakeFiles/WokerManager.dir/Manager.cpp.o	5a347bdb36b329d5
 2	416	1647532043915805001	CMakeFiles/WokerManager.dir/Employee.cpp.o	edb86c54006329a
 742	853	1647877401616063904	WokerManager	8d72291af1e656eb
+2	649	1647964999191238529	CMakeFiles/WokerManager.dir/Manager.cpp.o	5a347bdb36b329d5
+1	649	1647964999192022107	CMakeFiles/WokerManager.dir/main.cpp.o	c07405bea59a1e9d
+2	707	1647964999254335471	CMakeFiles/WokerManager.dir/WorkerManager.cpp.o	c9cc1fe4d3da835e
+707	787	1647964999336081855	WokerManager	8d72291af1e656eb
