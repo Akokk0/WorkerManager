@@ -46,6 +46,8 @@ public:
 
     void saveFile();
 
+    int getEmpNum(ifstream &ifs);
+
     void exitSystem();
 
     ~WorkerManager();

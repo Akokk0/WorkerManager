@@ -51,6 +51,12 @@ WorkerManager::WorkerManager() {
 
     }
 
+    //文件有数据，统计人数
+    int empNum = getEmpNum(ifs);
+    cout << "当前员工数为：" << empNum << endl;
+
+    m_EmpNum = empNum;
+
 }
 
 void WorkerManager::showMenu() {
@@ -238,6 +244,22 @@ void WorkerManager::saveFile() {
 
     ofs.close();
     
+}
+
+int WorkerManager::getEmpNum(ifstream &ifs) {
+
+    string temporary;
+
+    int empNum = 0;
+
+    while (getline(ifs, temporary)) {
+
+        empNum++;
+
+    }
+
+    return empNum;
+
 }
 
 void WorkerManager::exitSystem() {
