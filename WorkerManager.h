@@ -48,6 +48,14 @@ public:
 
     int getEmpNum(ifstream &ifs);
 
+    void initEmp();
+
+    void showEmp();
+
+    void delEmp();
+
+    int empIsExist(int id);
+
     void exitSystem();
 
     ~WorkerManager();

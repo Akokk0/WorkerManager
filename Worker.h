@@ -35,7 +35,7 @@ public:
 
         cout << "职工编号：" << m_Id
              << "\t职工姓名：" << m_Name
-             << "\t岗位编号：" << getDeptName()
+             << "\t岗位名称：" << getDeptName()
              << "\t岗位指责：" << getDuty() << endl;
 
     };

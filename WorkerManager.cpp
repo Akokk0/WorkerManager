@@ -53,9 +53,20 @@ WorkerManager::WorkerManager() {
 
     //文件有数据，统计人数
     int empNum = getEmpNum(ifs);
+    //关闭文件输入流
+    ifs.close();
+
+    //将文件存在表示设置为假
+    m_fileIsNotExit = false;
+
+    //输出提示信息
     cout << "当前员工数为：" << empNum << endl;
 
+    //更新员工数
     m_EmpNum = empNum;
+
+    //初始化员工
+    initEmp();
 
 }
 
@@ -87,39 +98,24 @@ void WorkerManager::startManager() {
         switch (choice) {
 
             case 0:
-
                 exitSystem();
-
             case 1:
-
                 addEmp();
-
                 break;
-
             case 2:
-
+                showEmp();
                 break;
-
             case 3:
-
+                delEmp();
                 break;
-
             case 4:
-
                 break;
-
             case 5:
-
                 break;
-
             case 6:
-
                 break;
-
             case 7:
-
                 break;
-
             default:
                 system("clear");
                 break;
@@ -266,6 +262,149 @@ void WorkerManager::exitSystem() {
 
     cout << "欢迎下次使用" << endl;
     exit(0);
+
+}
+
+void WorkerManager::initEmp() {
+
+    cout << "正在将员工信息写入内存" << endl;
+
+    ifstream ifs;
+    ifs.open(FILENAME, ios::in);
+
+    if ( !ifs.is_open() ) {
+
+        cout << "打开文件失败！" << endl;
+        return;
+
+    }
+
+    int id, deptId, index = 0;
+    string name;
+
+    //初始化员工数组
+    m_EmpArray = new Worker * [m_EmpNum];
+
+    Worker *worker = NULL;
+
+    while (ifs >> id && ifs >> name && ifs >> deptId) {
+
+        if (deptId == 1) {
+            m_EmpArray[index] = new Employee(id, name, deptId);
+        }
+        if (deptId == 2) {
+            m_EmpArray[index] = new Manager(id, name, deptId);
+        }
+        if (deptId == 3) {
+            m_EmpArray[index] = new Boss(id, name, deptId);
+        }
+
+        /*if (deptId == 1) {
+            worker = new Employee(id, name, deptId);
+        }
+        if (deptId == 2) {
+            worker = new Manager(id, name, deptId);
+        }
+        if (deptId == 3) {
+            worker = new Boss(id, name, deptId);
+        }*/
+
+        //m_EmpArray[index] = worker;
+
+        index++;
+
+    }
+
+    ifs.close();
+
+    cout << "员工信息全部写入内存" << endl;
+
+    for (int i = 0; i < m_EmpNum; ++i) {
+
+        /*cout << "员工编号：" << m_EmpArray[i]->m_Id << " "
+             << "员工姓名：" << m_EmpArray[i]->m_Name << " "
+             << "部门编号：" << m_EmpArray[i]->m_DeptId << endl;*/
+
+        m_EmpArray[i]->showPersonalInfo();
+
+    }
+
+}
+
+void WorkerManager::showEmp() {
+
+    if (m_fileIsNotExit) {
+
+        cout << "文件不存在或为空" << endl;
+        return;
+
+    }
+
+    for (int i = 0; i < m_EmpNum; ++i) {
+
+        m_EmpArray[i]->showPersonalInfo();
+
+    }
+
+}
+
+int WorkerManager::empIsExist(int id) {
+
+    for (int i = 0; i < m_EmpNum; ++i) {
+
+        //找到符合条件的成员
+        if (m_EmpArray[i]->m_Id == id) {
+
+            return i;
+
+        }
+
+    }
+
+    //没有找到符合条件的成员
+    return -1;
+
+}
+
+void WorkerManager::delEmp() {
+
+    if (m_fileIsNotExit) {
+
+        cout << "文件不存在或为空" << endl;
+        return;
+
+    }
+
+    cout << "请输入您要删除的员工ID" << endl;
+
+    int num;
+    cin >> num;
+    if ( (num = empIsExist(num)) == -1) {
+
+        cout << "删除失败，员工不存在！" << endl;
+
+    }
+
+    delete m_EmpArray[num];
+
+    for (int i = num; i < m_EmpNum; ++i) {
+
+        if (num == m_EmpNum - 1) {
+
+            m_EmpArray[i] = NULL;
+            return;
+
+        }
+
+        m_EmpArray[i] = m_EmpArray[i + 1];
+
+    }
+
+    m_EmpNum--;
+
+    saveFile();
+
+    cout << "删除成功" << endl;
 
 }
 
