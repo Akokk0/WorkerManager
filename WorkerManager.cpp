@@ -109,6 +109,7 @@ void WorkerManager::startManager() {
                 delEmp();
                 break;
             case 4:
+                modifyEmp();
                 break;
             case 5:
                 break;
@@ -392,19 +393,85 @@ void WorkerManager::delEmp() {
         if (num == m_EmpNum - 1) {
 
             m_EmpArray[i] = NULL;
-            return;
+            goto end;
 
         }
 
         m_EmpArray[i] = m_EmpArray[i + 1];
 
     }
+    
+    end:
 
     m_EmpNum--;
 
     saveFile();
 
     cout << "删除成功" << endl;
+
+}
+
+void WorkerManager::modifyEmp() {
+
+    //判断文件是否存在
+    if (m_fileIsNotExit) {
+
+        cout << "文件不存在或文件为空" << endl;
+        return;
+
+    }
+
+    cout << "请输入要修改的员工编号" << endl;
+    int id;
+    cin >> id;
+
+    if ( (id = empIsExist(id)) == -1 ) {
+
+        cout << "该员工不存在" << endl;
+        return;
+
+    }
+
+    int newId = 0;
+    string name;
+    int dSelect;
+
+    cout << "请输入新的员工编号" << endl;
+    cin >> newId;
+
+    cout << "请输入新的员工姓名" << endl;
+    cin >> name;
+
+    cout << "请选择新的员工职位" << endl;
+    cout << "1、普通员工" << endl;
+    cout << "2、公司经理" << endl;
+    cout << "3、资本家" << endl;
+    cin >> dSelect;
+
+    Worker * newEmployee = NULL;
+
+    switch (dSelect) {
+        case 1:
+            newEmployee = new Employee(newId, name, 1);
+            break;
+        case 2:
+            newEmployee = new Employee(newId, name, 2);
+            break;
+        case 3:
+            newEmployee = new Employee(newId, name, 3);
+            break;
+        default:
+            cout << "您的输入有误" << endl;
+            break;
+    }
+
+    //将新员工添加到员工数组中
+    m_EmpArray[id] = newEmployee;
+
+    //更新文件
+    saveFile();
+
+    cout << "员工修改完毕" << endl;
 
 }
 

@@ -56,6 +56,8 @@ public:
 
     int empIsExist(int id);
 
+    void modifyEmp();
+
     void exitSystem();
 
     ~WorkerManager();
