@@ -1,4 +1,0 @@
-1 zhangsan 1 
-2 lisi 2 
-3 wangwu 3 
-4 tianqi 1 

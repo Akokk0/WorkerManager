@@ -58,6 +58,20 @@ public:
 
     void modifyEmp();
 
+    void findEmp();
+
+    bool findEmpByName(string name);
+
+    void m_sort();
+
+    void quickSort(int left, int right);
+
+    void selectSort();
+
+    void swap(int a, int b);
+
+    void clearFile();
+
     void exitSystem();
 
     ~WorkerManager();

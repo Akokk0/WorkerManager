@@ -112,10 +112,14 @@ void WorkerManager::startManager() {
                 modifyEmp();
                 break;
             case 5:
+                findEmp();
                 break;
             case 6:
+                //quickSort(0, m_EmpNum - 1);
+                selectSort();
                 break;
             case 7:
+                clearFile();
                 break;
             default:
                 system("clear");
@@ -475,12 +479,242 @@ void WorkerManager::modifyEmp() {
 
 }
 
+void WorkerManager::findEmp() {
+
+    //判断文件是否为空或不存在
+    if (m_fileIsNotExit) {
+
+        cout << "文件不存在或为空" << endl;
+        return;
+
+    }
+
+    int num;
+
+    cout << "请输入查找方式" << endl
+         << "1、按编号查找" << endl
+         << "2、按姓名查找" << endl;
+
+    cin >> num;
+
+    if (num == 1) {
+
+        cout << "请输入想要查找的员工编号" << endl;
+        cin >> num;
+
+        if ( (num = empIsExist(num)) == -1 ) {
+
+            cout << "未找到该员工" << endl;
+
+        }
+
+        cout << "找到该员工，员工信息为：" << endl;
+
+        m_EmpArray[num]->showPersonalInfo();
+
+    } else if (num == 2) {
+
+        string name;
+
+        cout << "请输入想要查找的员工姓名" << endl;
+        cin >> name;
+
+        findEmpByName(name);
+
+    } else {
+
+        cout << "您的输入有误" << endl;
+
+    }
+
+    system("clear");
+
+}
+
+bool WorkerManager::findEmpByName(string name) {
+
+    bool flag = -1;
+
+    for (int i = 0; i < m_EmpNum; ++i) {
+
+        if (m_EmpArray[i]->m_Name == name) {
+
+            cout << "找到该员工，员工信息为：" << endl;
+            m_EmpArray[i]->showPersonalInfo();
+            flag = true;
+
+        }
+
+    }
+
+    return flag;
+
+}
+
+void WorkerManager::m_sort() {
+
+    int select = 0;
+
+    cout << "请选择排序方法：" << endl
+         << "1、快速排序" << endl
+         << "2、选择排序" << endl;
+
+    cin >> select;
+
+    switch (select) {
+        case 1:
+            quickSort(0, m_EmpNum - 1);
+        case 2:
+            selectSort();
+    }
+
+}
+
+void WorkerManager::quickSort(int left, int right) {
+
+    if (m_fileIsNotExit) {
+
+        cout << "文件不存在或文件为空" << endl;
+        return;
+
+    }
+
+    //定义开始、结束和基准点下标
+    int start = left, end = right, pivot = m_EmpArray[(left + right) / 2]->m_Id;
+
+    while (start <= end) {
+
+        while (m_EmpArray[start]->m_Id < pivot)
+            start++;
+
+        while (m_EmpArray[end]->m_Id > pivot)
+            end--;
+
+        if (start <= end) {
+
+            swap(start, end);
+            start++;
+            end--;
+
+        }
+
+    }
+
+    if (left < end)
+        quickSort(left, end);
+
+    if (start < right)
+        quickSort(start, right);
+
+}
+
+void WorkerManager::selectSort() {
+
+    if (m_fileIsNotExit) {
+
+        cout << "文件不存在或文件为空" << endl;
+        return;
+
+    }
+
+    for (int i = 0; i < m_EmpNum - 1; ++i) {
+
+        int min = i;
+        for (int j = i + 1; j < m_EmpNum; ++j) {
+
+            if (m_EmpArray[min]->m_Id > m_EmpArray[j]->m_Id) {
+
+                min = j;
+
+            }
+
+        }
+
+        if (i != min)
+            swap(i, min);
+    }
+}
+
+void WorkerManager::swap(int a, int b) {
+
+    Worker * temp = m_EmpArray[a];
+    m_EmpArray[a] = m_EmpArray[b];
+    m_EmpArray[b] = temp;
+
+}
+
+void WorkerManager::clearFile() {
+
+    if (m_fileIsNotExit) {
+
+        cout << "文件不存在或数据为空" << endl;
+        return;
+
+    }
+
+    cout << "您真的要清空文件吗" << endl
+         << "1、确定清空" << endl
+         << "2、算了" << endl;
+
+    int select = 0;
+    cin >> select;
+
+    if (select != 1) {
+
+        return;
+
+    }
+
+    ofstream ofs;
+
+    ofs.open(FILENAME, ios::trunc);
+    ofs.close();
+
+    if (m_EmpArray != NULL) {
+
+        for (int i = 0; i < m_EmpNum; ++i) {
+
+            if (m_EmpArray[i] != NULL) {
+
+                delete m_EmpArray[i];
+                m_EmpArray[i] = NULL;
+
+            }
+
+        }
+
+        delete[] m_EmpArray;
+        m_EmpArray = NULL;
+
+        m_EmpNum = 0;
+
+        m_fileIsNotExit = true;
+
+    }
+
+}
+
 WorkerManager::~WorkerManager() {
 
     if (m_EmpArray != NULL) {
 
+        for (int i = 0; i < m_EmpNum; ++i) {
+
+            if (m_EmpArray[i] != NULL) {
+
+                delete m_EmpArray[i];
+                m_EmpArray[i] = NULL;
+
+            }
+
+        }
+
         delete[] m_EmpArray;
         m_EmpArray = NULL;
+
+        m_EmpNum = 0;
+
+        m_fileIsNotExit = true;
 
     }
 
